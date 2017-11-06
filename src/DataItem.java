@@ -1,19 +1,20 @@
-public class DataItem<V, K> {
+public class DataItem<K, V> {
 
     private V value;
+
     private K key;
 
-    public DataItem(V value, K key) {
-        this.value = value;
+    public DataItem(K key, V value) {
         this.key = key;
-    }
-
-    public V getValue() {
-        return value;
+        this.value = value;
     }
 
     public K getKey() {
         return key;
+    }
+
+    public V getValue() {
+        return value;
     }
 
     

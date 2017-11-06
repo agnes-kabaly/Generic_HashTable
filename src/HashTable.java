@@ -1,4 +1,4 @@
-public class HashTable<V, K> {
+public class HashTable<K, V> {
 
     private int maxSize;
     private DataItem[] array;
@@ -10,7 +10,13 @@ public class HashTable<V, K> {
         array = (DataItem[]) new Object[maxSize];
     }
 
-    public void insert(DataItem dataItem) {
+    public void insert(K key, V value) {
+        DataItem<K, V> dataItem = new DataItem<K, V>(key, value);
+        int index = key.hashCode() % maxSize;
+        while (array[index] != null) {
+            index = key.hashCode()+1 % maxSize;
+        }
+        array[index] = dataItem;
         size++;
     }
 
@@ -18,12 +24,20 @@ public class HashTable<V, K> {
         size--;
     }
 
-    public int size() {
-        return size;
-    }
-
     public V getItem(K key) {
         return null;
+    }
+
+    public boolean isFull() {
+        return size == maxSize;
+    }
+
+    public boolean isEmpty() {
+        return size == 0 ? true : false;
+    }
+
+    public int size() {
+        return size;
     }
 
 
