@@ -1,13 +1,27 @@
-import java.util.HashMap;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        HashMap<String, Object> beleverem = new HashMap<>(128);
-        beleverem.put("Ági", 12000);
-        Integer aFaszom = 20;
-        System.out.println(aFaszom.hashCode()+1);
+        HashTable<String, Integer> hashTable = new HashTable<>(128);
+        System.out.println(hashTable.isEmpty());
+        System.out.println(hashTable.isFull());
+        System.out.println(hashTable.size());
+
+        hashTable.insert("Süti", 100);
+        hashTable.insert("Ági", 12);
+        hashTable.insert("Béla", 43);
+        hashTable.insert("Józsi", 99);
+        hashTable.insert("Nina", 78);
+        hashTable.insert("Dani", 1);
+        System.out.println("Nina".hashCode() % 16);
+        System.out.println(hashTable.isEmpty());
+        System.out.println(hashTable.isFull());
+        System.out.println(hashTable.size());
+
+        hashTable.delete("Dani");
+        System.out.println(hashTable.size());
+
+        System.out.println(hashTable.getItem("Süti"));
 
     }
 
