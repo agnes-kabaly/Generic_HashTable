@@ -20,12 +20,21 @@ public class HashTable<K, V> {
         size++;
     }
 
-    public void delete() {
+    public void delete(K key) {
+        int index = key.hashCode() % maxSize;
+        while (array[index].getKey().equals(key)) {
+            index = key.hashCode() + 1 % maxSize;
+        }
+        array[index] = null;
         size--;
     }
 
     public V getItem(K key) {
-        return null;
+        int index = key.hashCode() % maxSize;
+        while (array[index].getKey().equals(key)) {
+            index = key.hashCode() + 1 % maxSize;
+        }
+        return (V) array[index].getValue();
     }
 
     public boolean isFull() {
