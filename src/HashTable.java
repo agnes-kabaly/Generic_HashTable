@@ -25,25 +25,32 @@ public class HashTable<K, V> {
     }
 
     public void delete(K key) {
-        int index = Math.abs(key.hashCode()) % maxSize;
-        while (!array[index].getKey().equals(key)) {
-            index = Math.abs(key.hashCode() + 1) % maxSize;
+        if (isEmpty()) {
+            System.out.println("HashTable is empty, delete() isn't possible");
+        } else {
+            int index = Math.abs(key.hashCode()) % maxSize;
+            while (!array[index].getKey().equals(key)) {
+                index = Math.abs(key.hashCode() + 1) % maxSize;
+            }
+            array[index] = null;
+            size--;
         }
-        array[index] = null;
-        size--;
     }
 
     public V getItem(K key) {
-        int index = Math.abs(key.hashCode()) % maxSize;
-        while (!array[index].getKey().equals(key)) {
-            index = Math.abs(key.hashCode() + 1) % maxSize;
+        if (isEmpty()) {
+            System.out.println("HashTable is empty, getItem() isn't possible");
+            return null;
+        } else {
+            int index = Math.abs(key.hashCode()) % maxSize;
+            while (!array[index].getKey().equals(key)) {
+                index = Math.abs(key.hashCode() + 1) % maxSize;
+            }
+            return (V) array[index].getValue();
         }
-        return (V) array[index].getValue();
     }
 
     public boolean isFull() {
-        System.out.println("XSIII" + size);
-        System.out.println("MMAAA" + maxSize);
         return size == maxSize;
     }
 
