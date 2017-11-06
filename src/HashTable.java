@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class HashTable<K, V> {
 
     private int maxSize;
@@ -60,6 +62,10 @@ public class HashTable<K, V> {
 
     public int size() {
         return size;
+    }
+
+    public DataItem[] getArray() {
+        return Arrays.copyOf(array, maxSize);
     }
 
 

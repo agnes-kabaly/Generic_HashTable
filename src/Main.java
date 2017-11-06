@@ -21,7 +21,11 @@ public class Main {
         hashTable.delete("Dani");
         System.out.println(hashTable.size());
 
-        System.out.println(hashTable.getItem("Süti"));
+        for (DataItem<String, Integer> i : hashTable.getArray()) {
+            if (i != null) {
+                System.out.println(i.getKey() + ": " + i.getValue());
+            }
+        }
 
     }
 
